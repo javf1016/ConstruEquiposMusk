@@ -16,8 +16,48 @@
 ## 3. Cree la base de datos correspondiente, consulte previamente cual debe ser el motor a utilizar.
 - Se ha creado en Postgresql, la configuracion se encuentra en el application.properties
 ## 4. Cree el api rest que permita realizar las funcionalidades relacionadas a los casos de uso definidos, normalmente se usa spring boot.
+### Contratos
 - Crear un contrato:
   - Endpoint: POST http://localhost:8080/contratos
   - Body (raw, JSON):
-  - {"cliente": {"clienteId": 1},"contratoActivo": true,"incluyeTransporte": false}
-  !(https://github.com/javf1016/Images/blob/main/CrearContratoExito.PNG)
+  - {"cliente": {"clienteId": 1}, "contratoActivo": true, "incluyeTransporte": false}
+  - Resultado Exitoso
+![Exitoso](https://github.com/javf1016/Images/blob/main/CrearContratoExito.PNG?raw=true)
+  - Cliente no encontrado
+![Error](https://github.com/javf1016/Images/blob/main/CrearContratoClienteNoExiste.PNG?raw=true)
+- Obtener un contrato por ID:
+  - Endpoint: GET http://localhost:8080/contratos/{contratoId}
+  - Reemplaza {contratoId} con el ID real del contrato que deseas obtener.
+- Obtener todos los contratos de un cliente:
+  - Endpoint: GET http://localhost:8080/contratos/cliente/{clienteId}
+  - Reemplaza {clienteId} con el ID real del cliente cuyos contratos deseas obtener.
+  ### Equipos
+- Crear un equipo:
+  - Endpoint: POST http://localhost:8080/equipos
+  - Body (raw - JSON):
+  - {"nombre": "Nombre del equipo", "marca": "Marca del equipo", "modelo": "Modelo del equipo", "descripcion": "Descripción del equipo", "disponible": true}
+- Obtener un equipo por ID:
+  - Endpoint: GET http://localhost:8080/equipos/{equipoId}
+  - Reemplaza {equipoId} con el ID real del equipo que deseas obtener.
+- Obtener todos los equipos disponibles:
+  - Endpoint: GET http://localhost:8080/equipos/disponibles
+- Obtener todos los equipos en mantenimiento:
+  - Endpoint: GET http://localhost:8080/equipos/mantenimiento
+- Asignar un equipo a un contrato:
+  - Endpoint: POST http://localhost:8080/equipos/{equipoId}/asignar
+  - Body (raw - JSON):
+  - {"fechaInicio": "2023-04-20", "fechaFin": "2023-04-25","incluyeTransporte": false, "contratoId": 2}
+    - Resultado Exitoso
+![Exitoso](https://github.com/javf1016/Images/blob/main/AsignarEquipoExitoso.PNG?raw=true)
+    - Resultado Equipo ya asignado
+![Exitoso](https://github.com/javf1016/Images/blob/main/AsignarEquipoAsignado.PNG?raw=true)
+- Registrar la entrega de un equipo:
+  - Endpoint: POST http://localhost:8080/equipos/{equipoId}/entrega
+  - Reemplaza {equipoId} con el ID real del equipo que deseas entregar.
+  - Body (raw - JSON):
+  - {"enBuenEstado": true}
+- Registrar la reparación de un equipo:
+  - Endpoint: POST http://localhost:8080/equipos/{equipoId}/reparacion
+  - Reemplaza {equipoId} con el ID real del equipo que deseas reparar.
+  - Body (raw - JSON):
+  - {"costoReparacion": 100.0: true}
