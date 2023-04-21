@@ -61,3 +61,5 @@
   - Reemplaza {equipoId} con el ID real del equipo que deseas reparar.
   - Body (raw - JSON):
   - {"costoReparacion": 100.0: true}
+## 6. Cree la interfaz web, consulte previamente, si es back end, puede no necesitarlo.
+  - No tiene interfaz web
