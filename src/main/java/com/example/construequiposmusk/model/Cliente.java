@@ -3,12 +3,14 @@ package com.example.construequiposmusk.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
 @Data
 @Table(name = "clientes")
+@ToString
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +20,7 @@ public class Cliente {
     private String nombre;
     private String direccion;
     // Relación uno a muchos con Contrato
-    @OneToMany(mappedBy = "clienteId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Contrato> contratos;
 }

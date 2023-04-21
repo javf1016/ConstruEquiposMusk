@@ -20,4 +20,5 @@ public class RegistroEntrega {
 
     private boolean incluidoEnContrato;
     private boolean incluyeTransporte;
+    private Double costoReparacion;
 }

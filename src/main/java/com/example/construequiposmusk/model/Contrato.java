@@ -2,6 +2,7 @@ package com.example.construequiposmusk.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "contratos")
+@ToString
 public class Contrato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +18,7 @@ public class Contrato {
     private Long contratoId;
 
     @ManyToOne
+    @JoinColumn(name = "cliente_cliente_id") // nombre de la columna de la clave foránea en la tabla contratos
     private Cliente cliente;
 
     @ManyToMany
@@ -25,5 +28,4 @@ public class Contrato {
     private LocalDate fechaFin;
     private boolean contratoActivo;
     private boolean incluyeTransporte;
-
 }
